@@ -27,17 +27,22 @@ class Calculadora(_operation: Operation) {
     }
 
     fun triggerOperations(operations: Int){
-        var numberOne: Double = pegarNumero("Digite o primeiro número")
-        var numberTwo: Double = pegarNumero("Digite o segundo número")
-        println("Qual operação você deseja realizar")
-        when (operations) {
-            1 -> operation.soma(numberOne, numberTwo)
-            2 -> operation.sub(numberOne, numberTwo)
-            3 -> operation.multi(numberOne, numberTwo)
-            4 -> operation.div(numberOne, numberTwo)
-            5 -> operation.quadrado(numberOne)
-            6 -> exitProcess(-1)
-            else-> redefinir()
+        val operationsList = arrayListOf<Int>(1,2,3,4,5)
+            if(operationsList.contains(operations)){
+            var numberOne: Double = pegarNumero("Digite o primeiro número")
+            var numberTwo: Double = pegarNumero("Digite o segundo número")
+            println("Qual operação você deseja realizar")
+            when (operations) {
+                1 -> operation.soma(numberOne, numberTwo)
+                2 -> operation.sub(numberOne, numberTwo)
+                3 -> operation.multi(numberOne, numberTwo)
+                4 -> operation.div(numberOne, numberTwo)
+                5 -> operation.quadrado(numberOne)
+            }
+        } else if(operations == 6){
+                exitProcess(-1)
+        } else {
+                redefinir()
         }
     }
 }
