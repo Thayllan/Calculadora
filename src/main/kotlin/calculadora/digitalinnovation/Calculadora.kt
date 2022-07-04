@@ -37,15 +37,19 @@ class Calculadora(_operation: Operation) {
                 2 -> operation.sub(numberOne, numberTwo)
                 3 -> operation.multi(numberOne, numberTwo)
                 4 -> operation.div(numberOne, numberTwo)
-                5 -> operation.quadrado(numberOne)
             }
         } else if(operations == 6){
                 exitProcess(-1)
-        } else {
+        }
+            else if(operations == 5){
+                var number: Double = pegarNumero("Digite o número para elevar ao quadrado")
+                operation.quadrado(number)
+            }else {
                 redefinir()
         }
     }
 }
+
 
 
 
