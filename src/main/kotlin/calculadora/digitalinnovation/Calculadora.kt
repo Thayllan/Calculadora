@@ -1,86 +1,64 @@
 package calculadora.digitalinnovation
-
 import kotlin.system.exitProcess
+class Calculadora(_operation: Operation) {
+    var operation : Operation = _operation
+    fun initializeApp(){
+        var escolha: Int? = 1
+        while (escolha in 1..5) {
+            println("_____Bem vindo(a)_____")
+            println("1 - Adição")
+            println("2 - Subtração")
+            println("3 - Multiplicação")
+            println("4 - Divisão")
+            println("5 - Quadrado")
+            println("6 - Sair")
+            print("Digite o numero da operaçao que voçê deseja: ")
+            escolha = readLine()?.toInt()
+            triggerOperations(escolha?: 0);
+        }
+    }
+    private fun pegarNumero(message: String):Double {
+        println(message)
+        var num = readLine()!! .toDouble()
+        return num
+    }
+    private fun redefinir() {
+        println("Opcao invalida, digite um valor correto")
+    }
 
-class Calculadora {
-}
-var escolha: Int = 1
-fun soma():Double {
-    var num1: Double = pegarNumero()
-    var num2: Double = pegarNumero()
-    var resultado = num1 + num2
-    println(resultado)
-    return (resultado)
-}
-
-fun sub():Double {
-    var num1: Double = pegarNumero()
-    var num2: Double = pegarNumero()
-    var resultado = num1 - num2
-    println(resultado)
-    return (resultado)
-}
-
-fun div():Double {
-    var num1: Double = pegarNumero()
-    var num2: Double = pegarNumero()
-    var resultado = num1 / num2
-    println(resultado)
-    return (resultado)
-}
-
-fun multi():Double {
-    var num1: Double = pegarNumero()
-    var num2: Double = pegarNumero()
-    var resultado = num1 * num2
-    println(resultado)
-    return (resultado)
-}
-
-fun pegarNumero():Double {
-    println("Digite um numero:")
-    var num = readLine()!! .toDouble()
-    return (num)
-}
-
-fun quadrado():Double {
-    var num1: Double = pegarNumero()
-    var resultado = num1 * num1
-    println(resultado)
-    return (resultado)
-}
-fun erro (){
-
-    return(println("Insira um valor correto"))
-}
-
-fun redefinir (){
-    escolha = 1
-    return (println("Opcao invalida, digite um valor correto"))
-}
-fun main() {
-    while (escolha in 1..5) {
-        println("_____Bem vindo(a)_____")
-        println("Qual operação você deseja realizar")
-        println("1 - Adição")
-        println("2 - Subtração")
-        println("3 - Multiplicação")
-        println("4 - Divisão")
-        println("5 - Quadrado")
-        println("6 - Sair")
-        print("Digite o numero da operaçao que voçê deseja: ")
-        escolha = readLine()!!.toInt()
-        when (escolha) {
-            1 -> soma()
-            2 -> sub()
-            3 -> multi()
-            4 -> div()
-            5 -> quadrado()
-            6 -> exitProcess(-1)
-            else -> redefinir()
+    fun triggerOperations(operations: Int){
+        val operationsList = arrayListOf<Int>(1,2,3,4,5)
+            if(operationsList.contains(operations)){
+            var numberOne: Double = pegarNumero("Digite o primeiro número")
+            var numberTwo: Double = pegarNumero("Digite o segundo número")
+            println("Qual operação você deseja realizar")
+            when (operations) {
+                1 -> operation.soma(numberOne, numberTwo)
+                2 -> operation.sub(numberOne, numberTwo)
+                3 -> operation.multi(numberOne, numberTwo)
+                4 -> operation.div(numberOne, numberTwo)
             }
-
+        } else if(operations == 6){
+                exitProcess(-1)
+        }
+            else if(operations == 5){
+                var number: Double = pegarNumero("Digite o número para elevar ao quadrado")
+                operation.quadrado(number)
+            }else {
+                redefinir()
+        }
     }
+}
 
-    }
+
+
+
+
+
+
+
+
+
+
+
 
